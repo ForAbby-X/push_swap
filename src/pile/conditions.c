@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   conditions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 02:19:49 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/03/23 18:30:43 by alde-fre         ###   ########.fr       */
+/*   Created: 2023/03/23 16:33:34 by alde-fre          #+#    #+#             */
+/*   Updated: 2023/03/23 16:39:19 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "pile.h"
 
-# include <stdio.h>
+t_ret	pile_is_in(t_pile const *const pile, int val)
+{
+	size_t	i;
 
-int		ft_atoi(char const *const input);
-void	ft_swap(int *const a, int *const b)__attribute__((always_inline));
-int		ft_min(int const a, int const b)__attribute__((always_inline));
-int		ft_max(int const a, int const b)__attribute__((always_inline));
-int		ft_abs(int const a)__attribute__((always_inline));
-
-#endif
+	i = 0;
+	while (i < pile->size)
+	{
+		if (pile->data[i] == val)
+			return (OK);
+		i++;
+	}
+	return (KO);
+}

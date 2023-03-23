@@ -6,7 +6,7 @@
 #    By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 09:39:09 by alde-fre          #+#    #+#              #
-#    Updated: 2023/03/18 15:02:46 by alde-fre         ###   ########.fr        #
+#    Updated: 2023/03/23 18:37:57 by alde-fre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,11 @@ SRC		=	main.c \
 			pile/init.c \
 			pile/add.c \
 			pile/remove.c \
+			pile/copy.c \
+			pile/display.c \
+			pile/conditions.c \
+			pile/rotation.c \
+			pile/geter.c \
 			 \
 			actions/push.c \
 			actions/reverse_rotate.c \

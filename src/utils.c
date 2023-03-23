@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 02:19:44 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/03/18 15:33:22 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:30:27 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,23 @@ void	ft_swap(int *const a, int *const b)
 	*b = c;
 }
 
+int	ft_min(int const a, int const b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
 int	ft_max(int const a, int const b)
 {
 	if (a > b)
 		return (a);
 	return (b);
+}
+
+int	ft_abs(int const a)
+{
+	if (a < 0)
+		return (-a);
+	return (a);
 }

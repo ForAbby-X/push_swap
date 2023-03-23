@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 14:23:38 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/03/18 15:03:29 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:22:36 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ t_ret	pile_rem_last(t_pile *const pile)
 	return (OK);
 }
 
-t_ret	pile_clear(t_pile *const pile)
+void	pile_clear(t_pile *const pile)
 {
 	pile->size = 0LU;
-	return (OK);
 }
