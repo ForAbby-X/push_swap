@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 00:26:44 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/03/23 18:43:37 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:07:37 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,10 @@ static inline void	action_push_cost(t_context *const context, t_cost cost)
 			action_ra(context);
 		else
 			action_rra(context);
+		if (cost.a > 0)
+			cost.a--;
+		else
+			cost.a++;
 	}
 	while (cost.b)
 	{
@@ -102,6 +106,10 @@ static inline void	action_push_cost(t_context *const context, t_cost cost)
 			action_rb(context);
 		else
 			action_rrb(context);
+		if (cost.b > 0)
+			cost.b--;
+		else
+			cost.b++;
 	}
 	action_pa(context);
 }
@@ -116,17 +124,15 @@ static inline void	_extract_and_sort_b(t_context *const context)
 	{
 		i = 0;
 		min_cost.sum = INT_MAX;
-		printf("PRINT COSTS:\n");
 		while (i < context->pile_b->size)
 		{
 			cost = get_cost(context, context->pile_b->data[i]);
 			if (ft_abs(cost.sum) < ft_abs(min_cost.sum))
 				min_cost = cost;
-			printf("[%lu]%d:%d:%d\n", i, cost.a, cost.b, cost.sum);
 			i++;
 		}
 		action_push_cost(context, min_cost);
-		context_display(context);
+		//context_display(context);
 	}
 }
 
@@ -134,18 +140,18 @@ t_ret	solver(t_context *const context)
 {
 	t_pile	*lis;
 
-	context_display(context);
+	//context_display(context);
 	if (pile_copy_data(context->pile_t, context->pile_a) == KO)
 		return (KO);
 	_rotate_to_smallest(context->pile_t);
 	lis = _get_lis(context->pile_t);
 	if (lis == NULL)
 		return (KO);
-	pile_display(lis, "lis");
+	//pile_display(lis, "lis");
 	_extract_lis(context, lis);
-	context_display(context);
 	_extract_and_sort_b(context);
-	context_display(context);
+	_rotate_to_smallest(context->pile_a);
+	//context_display(context);
 	pile_destroy(lis);
 	return (OK);
 }

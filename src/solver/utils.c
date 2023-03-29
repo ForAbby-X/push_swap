@@ -6,13 +6,13 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 05:05:06 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/03/23 18:57:12 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:06:09 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solver.h"
 
-t_minmax	get_minmax(t_pile *const pile)
+t_minmax	get_minmax(t_pile const *const pile)
 {
 	size_t		i;
 	t_minmax	minmax;
@@ -39,7 +39,7 @@ t_minmax	get_minmax(t_pile *const pile)
 	return (minmax);
 }
 
-size_t	pile_get_dist(t_pile const *const pile, int val)
+size_t	pile_get_dist(t_pile const *const pile, int const val)
 {
 	size_t	index;
 
@@ -50,7 +50,7 @@ size_t	pile_get_dist(t_pile const *const pile, int val)
 		return (pile->size - index);
 }
 
-void	action_push_value(t_context *const context, int val)
+void	action_push_value(t_context *const context, int const val)
 {
 	size_t	index;	
 
@@ -67,7 +67,8 @@ void	action_push_value(t_context *const context, int val)
 
 static inline int	_get_cost_betw(t_pile *const pile, int val)
 {
-	size_t	index;
+	size_t		i;
+	t_minmax	minmax;
 
 	if (pile->size < 2)
 		return (0);
@@ -80,14 +81,23 @@ static inline int	_get_cost_betw(t_pile *const pile, int val)
 		else
 			return (0);
 	}
-	index = 0;
-	while (!(val > pile->data[index % pile->size] \
-		&& val < pile->data[(index + 1) % pile->size]))
-		index++;
-	if (index < pile->size / 2)
-		return (index);
+	minmax = get_minmax(pile);
+	if (val < minmax.val_min)
+		return (pile_get_dist(pile, minmax.val_min));
+	if (val > minmax.val_max)
+		return (pile_get_dist(pile, minmax.val_max) + 1);
+	i = minmax.index_min;
+	while ((i % pile->size) != minmax.index_max)
+	{
+		if (val > pile->data[i % pile->size] && val < pile->data[(i + 1) % pile->size])
+			break ;
+		i++;
+	}
+	i = (i + 1) % pile->size;
+	if (i < pile->size / 2)
+		return (i);
 	else
-		return (-(pile->size - index));
+		return (-(pile->size - i));
 }
 
 t_cost	get_cost(t_context *const context, int val)
@@ -96,15 +106,12 @@ t_cost	get_cost(t_context *const context, int val)
 	t_cost	cost;
 
 	index = pile_get_index(context->pile_b, val);
-	printf("here\n");
 	cost.val = val;
 	if (index < context->pile_b->size / 2)
 		cost.b = index;
 	else
 		cost.b = -(context->pile_b->size - index);
-	printf("there\n");
 	cost.a = _get_cost_betw(context->pile_a, val);
-	printf("but now ?\n");
 	cost.sum = cost.a + cost.b;
 	return (cost);
 }
