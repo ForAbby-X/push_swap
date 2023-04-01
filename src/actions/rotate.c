@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:49:49 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/03/29 16:45:56 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/03/30 19:21:42 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	action_ra(t_context *const context)
 
 void	action_rb(t_context *const context)
 {
-	write(1, "ra\n", 3);
+	write(1, "rb\n", 3);
 	pile_rotate(context->pile_b);
 }
 

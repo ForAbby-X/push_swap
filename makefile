@@ -6,7 +6,7 @@
 #    By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 09:39:09 by alde-fre          #+#    #+#              #
-#    Updated: 2023/03/23 18:37:57 by alde-fre         ###   ########.fr        #
+#    Updated: 2023/04/01 21:06:13 by alde-fre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRC		=	main.c \
 			actions/swap.c \
 			 \
 			solver/solver.c \
-			solver/utils.c
+			solver/utils.c \
+			solver/mover.c
 
 INC		= 
 
@@ -69,7 +70,7 @@ obj:
 
 $(NAME): $(OBJ)
 	@echo "\e[1;35mLinking...\e[0m"
-	@$(CC) -o $(NAME) $+
+	@$(CC) -pg -o $(NAME) $+
 	@echo "\e[1;32m➤" $@ "created succesfully !\e[0m"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c .print

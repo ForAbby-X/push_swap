@@ -6,13 +6,13 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 01:11:16 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/03/23 12:45:03 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/01 19:24:58 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static t_ret	_is_numbers(char const *const input)
+static inline t_ret	_is_numbers(char const *const input)
 {
 	size_t	i;
 
@@ -28,7 +28,7 @@ static t_ret	_is_numbers(char const *const input)
 	return (OK);
 }
 
-static t_ret	_is_repeat(t_pile const *const pile, int const val)
+static inline t_ret	_is_repeat(t_pile const *const pile, int const val)
 {
 	size_t	i;
 
@@ -46,14 +46,16 @@ t_ret	parse_input(t_pile *const pile, char const *const *const input)
 {
 	size_t	i;
 	int		num;
+	int		err;
 
 	i = 0;
+	err = 0;
 	while (i < pile->capacity)
 	{
 		if (_is_numbers(input[i]))
 		{
-			num = ft_atoi(input[i]);
-			if (_is_repeat(pile, num))
+			num = ft_atoi(input[i], &err);
+			if (_is_repeat(pile, num) || err == KO)
 				return (KO);
 			else
 				pile_add_back(pile, num);

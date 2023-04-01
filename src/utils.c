@@ -6,13 +6,13 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 02:19:44 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/03/23 18:30:27 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/01 19:11:18 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int	ft_atoi(char const *const input)
+int	ft_atoi(char const *const input, int *err)
 {
 	size_t	i;
 	int		sign;
@@ -28,10 +28,12 @@ int	ft_atoi(char const *const input)
 	ret = 0;
 	while (input[i] >= '0' && input[i] <= '9')
 	{
+		if ((int)(ret * 10 + (input[i] - '0') - (sign == -1)) < 0)
+			return (*err = KO, 0);
 		ret = ret * 10 + (input[i] - '0');
 		i++;
 	}
-	return (ret * sign);
+	return (*err = OK, ret * sign);
 }
 
 void	ft_swap(int *const a, int *const b)
