@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add.c                                              :+:      :+:    :+:   */
+/*   ordered.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 14:23:12 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/09 16:40:21 by alde-fre         ###   ########.fr       */
+/*   Created: 2023/04/09 16:40:51 by alde-fre          #+#    #+#             */
+/*   Updated: 2023/04/09 18:00:36 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pile.h"
+#include "checker.h"
 
-t_ret	pile_add_front(t_pile *const pile, int const val)
+t_ret	is_sorted(t_pile *const pile)
 {
 	size_t	i;
 
-	if (pile->size >= pile->capacity)
-		return (KO);
-	i = pile->size;
-	while (i > 0)
+	i = 0;
+	while (i + 1 < pile->size)
 	{
-		pile->data[i] = pile->data[i - 1];
-		i--;
+		if (pile->data[i] > pile->data[i + 1])
+			return (KO);
+		i++;
 	}
-	pile->data[0] = val;
-	pile->size++;
-	return (OK);
-}
-
-t_ret	pile_add_back(t_pile *const pile, int const val)
-{
-	if (pile->size >= pile->capacity)
-		return (KO);
-	pile->data[pile->size] = val;
-	pile->size++;
 	return (OK);
 }

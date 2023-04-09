@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 19:26:33 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/02 00:35:25 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/09 23:58:37 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,42 @@ void	action_to_smallest(t_context *const context)
 	}
 }
 
-void	action_push_cost(t_context *const context, t_cost cost)
+static inline void	action_push_same(
+	t_context *const context,
+	t_move *const move)
 {
-	while (cost.a)
+	while (move->a > 0 && move->b > 0)
 	{
-		if (cost.a > 0)
+		action_rr(context);
+		move->a--;
+		move->b--;
+	}
+	while (move->a < 0 && move->b < 0)
+	{
+		action_rrr(context);
+		move->a++;
+		move->b++;
+	}
+}
+
+void	action_push_move(t_context *const context, t_move *const move)
+{
+	action_push_same(context, move);
+	while (move->a)
+	{
+		if (move->a > 0)
 			action_ra(context);
 		else
 			action_rra(context);
-		if (cost.a > 0)
-			cost.a--;
-		else
-			cost.a++;
+		move->a -= ft_norm(move->a);
 	}
-	while (cost.b)
+	while (move->b)
 	{
-		if (cost.b > 0)
+		if (move->b > 0)
 			action_rb(context);
 		else
 			action_rrb(context);
-		if (cost.b > 0)
-			cost.b--;
-		else
-			cost.b++;
+		move->b -= ft_norm(move->b);
 	}
 	action_pa(context);
 }
@@ -56,31 +69,31 @@ void	action_push_cost(t_context *const context, t_cost cost)
 void	extract_and_sort_b(t_context *const context)
 {
 	size_t		i;
-	t_cost		min_cost;
-	t_cost		cost;
+	t_move		min_move;
+	t_move		move;
 
 	while (context->pile_b->size)
 	{
 		i = 0;
-		min_cost.sum = INT_MAX;
+		min_move.sum = INT_MAX;
 		while (i < context->pile_b->size)
 		{
-			cost = get_cost(context, context->pile_b->data[i], i);
-			if (ft_abs(cost.sum) < ft_abs(min_cost.sum))
-				min_cost = cost;
+			move = get_move(context, context->pile_b->data[i], i);
+			if (ft_abs(move.sum) < ft_abs(min_move.sum))
+				min_move = move;
 			i++;
 		}
-		action_push_cost(context, min_cost);
+		action_push_move(context, &min_move);
 	}
 }
 
-void	action_push_value(t_context *const context, size_t const index)
+void	action_push_index(t_context *const context, size_t const index)
 {
 	int const	val = context->pile_a->data[index];
 
 	while (context->pile_a->data[0] != val)
 	{
-		if (index < context->pile_a->size / 2)
+		if (index <= context->pile_a->size / 2)
 			action_ra(context);
 		else
 			action_rra(context);

@@ -6,7 +6,7 @@
 #    By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 09:39:09 by alde-fre          #+#    #+#              #
-#    Updated: 2023/04/01 21:06:13 by alde-fre         ###   ########.fr        #
+#    Updated: 2023/04/09 22:46:50 by alde-fre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,14 +39,18 @@ SRC		=	main.c \
 			 \
 			solver/solver.c \
 			solver/utils.c \
-			solver/mover.c
+			solver/mover.c \
+			solver/small_solve.c\
+			 \
+			checker/ordered.c \
+			checker/do_action.c
 
 INC		= 
 
 OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
 # compiler
-CC		= clang
+CC		= cc
 CFLAGS	= -MMD -MP -Wall -Wextra -Werror
 
 all: obj $(NAME)

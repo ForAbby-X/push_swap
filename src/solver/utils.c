@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 05:05:06 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/02 00:41:29 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/09 23:18:42 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,7 @@ t_minmax	get_minmax(t_pile const *const pile)
 	return (minmax);
 }
 
-long	pile_get_dist(t_pile const *const pile, size_t const index)
-{
-	if (index <= pile->size / 2)
-		return (index);
-	else
-		return (-(pile->size - index));
-}
-
-static inline int	_get_cost_betw(t_pile *const pile,	int const val)
+static inline size_t	_get_a_index(t_pile *const pile, int const val)
 {
 	size_t		i;
 	t_minmax	minmax;
@@ -56,9 +48,9 @@ static inline int	_get_cost_betw(t_pile *const pile,	int const val)
 		return (0);
 	minmax = get_minmax(pile);
 	if (val < minmax.val_min)
-		return (pile_get_dist(pile, minmax.index_min));
+		return (minmax.index_min);
 	if (val > minmax.val_max)
-		return (pile_get_dist(pile, (minmax.index_max + 1) % pile->size));
+		return ((minmax.index_max + 1) % pile->size);
 	i = minmax.index_min;
 	while ((i % pile->size) != minmax.index_max)
 	{
@@ -67,22 +59,51 @@ static inline int	_get_cost_betw(t_pile *const pile,	int const val)
 			break ;
 		i++;
 	}
-	return (pile_get_dist(pile, (i + 1) % pile->size));
+	return ((i + 1) % pile->size);
 }
 
-t_cost	get_cost(
+static inline t_move	_get_move_try(
+	t_context const	*const context,
+	size_t const index_a,
+	size_t const index_b,
+	int const flag)
+{
+	t_move	move;
+
+	if (flag & 0b01)
+		move.a = index_a;
+	else
+		move.a = -(context->pile_a->size - index_a);
+	if (flag & 0b10)
+		move.b = index_b;
+	else
+		move.b = -(context->pile_b->size - index_b);
+	if ((move.a < 0 && move.b >= 0) || (move.a >= 0 && move.b < 0))
+		move.sum = ft_abs(move.a) + ft_abs(move.b);
+	else
+		move.sum = ft_max(ft_abs(move.a), ft_abs(move.b));
+	return (move);
+}
+
+t_move	get_move(
 	t_context *const context,
 	int val,
-	size_t const index)
+	size_t const index_b)
 {
-	t_cost		cost;
+	size_t const	index_a = _get_a_index(context->pile_a, val);
+	t_move			move;
+	t_move			best_move;
+	int				flag;
 
-	cost.val = val;
-	if (index <= context->pile_b->size / 2)
-		cost.b = index;
-	else
-		cost.b = -(context->pile_b->size - index);
-	cost.a = _get_cost_betw(context->pile_a, val);
-	cost.sum = cost.a + cost.b;
-	return (cost);
+	flag = 0;
+	best_move.sum = INT_MAX;
+	while (flag < 4)
+	{
+		move = _get_move_try(context, index_a, index_b, flag);
+		if (ft_abs(move.sum) < ft_abs(best_move.sum))
+			best_move = move;
+		flag++;
+	}
+	best_move.val = val;
+	return (best_move);
 }
