@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 09:39:09 by alde-fre          #+#    #+#              #
-#    Updated: 2023/04/09 22:46:50 by alde-fre         ###   ########.fr        #
+#    Updated: 2023/04/11 22:16:15 by alde-fre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,14 @@ INCDIR	=	-I ./inc
 OBJDIR	=	./obj
 
 # src / includes / obj files
-SRC		=	main.c \
-			context.c \
-			parsing.c \
-			utils.c \
+SRC		=	push_swap/main.c \
+			push_swap/context.c \
+			push_swap/parsing.c \
+			push_swap/utils.c \
+			push_swap/solver/solver.c \
+			push_swap/solver/utils.c \
+			push_swap/solver/mover.c \
+			push_swap/solver/small_solve.c\
 			 \
 			pile/init.c \
 			pile/add.c \
@@ -37,11 +41,7 @@ SRC		=	main.c \
 			actions/rotate.c \
 			actions/swap.c \
 			 \
-			solver/solver.c \
-			solver/utils.c \
-			solver/mover.c \
-			solver/small_solve.c\
-			 \
+			checker/main.c \
 			checker/ordered.c \
 			checker/do_action.c
 
@@ -51,7 +51,7 @@ OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
 # compiler
 CC		= cc
-CFLAGS	= -MMD -MP -Wall -Wextra -Werror
+CFLAGS	= -MMD -MP -Wall -Wextra -Werror -pg
 
 all: obj $(NAME)
 

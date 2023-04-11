@@ -1,0 +1,7 @@
+.vscode
+objs
+*.out
+*.o
+*.a
+*.d
+.print

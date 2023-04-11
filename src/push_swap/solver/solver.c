@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 00:26:44 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/09 23:55:12 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/11 22:21:38 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ t_ret	solver(t_context *const context)
 		return (KO);
 	_extract_lis(context, lis);
 	extract_and_sort_b(context);
+	printf("EXTRACTBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBb\n");
 	pile_destroy(lis);
 	action_to_smallest(context);
 	return (OK);
