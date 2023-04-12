@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 19:26:33 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/09 23:58:37 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/12 11:30:42 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ void	extract_and_sort_b(t_context *const context)
 	while (context->pile_b->size)
 	{
 		i = 0;
-		min_move.sum = INT_MAX;
+		min_move.cost = INT_MAX;
 		while (i < context->pile_b->size)
 		{
 			move = get_move(context, context->pile_b->data[i], i);
-			if (ft_abs(move.sum) < ft_abs(min_move.sum))
+			if (move.cost < min_move.cost)
 				min_move = move;
 			i++;
 		}

@@ -6,7 +6,7 @@
 #    By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 09:39:09 by alde-fre          #+#    #+#              #
-#    Updated: 2023/04/11 22:16:15 by alde-fre         ###   ########.fr        #
+#    Updated: 2023/04/12 12:53:56 by alde-fre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,10 @@ SRC		=	push_swap/main.c \
 			 \
 			checker/main.c \
 			checker/ordered.c \
-			checker/do_action.c
+			checker/do_action.c \
+			checker/get_next_line.c \
+			checker/get_next_line_utils.c
+
 
 INC		= 
 

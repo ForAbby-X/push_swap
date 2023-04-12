@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 18:09:24 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/09 23:53:05 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/12 11:31:04 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ struct s_minmax
 
 struct s_move
 {
-	int		a;
-	int		b;
-	int		sum;
+	long	a;
+	long	b;
+	size_t	cost;
 	int		val;
 };
 

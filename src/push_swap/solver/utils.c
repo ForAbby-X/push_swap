@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 05:05:06 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/11 22:20:00 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/12 12:51:27 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ static inline t_move	_get_move_try(
 	else
 		move.b = -(context->pile_b->size - index_b);
 	if ((move.a < 0 && move.b >= 0) || (move.a >= 0 && move.b < 0))
-		move.sum = ft_abs(move.a) + ft_abs(move.b);
+		move.cost = ft_abs(move.a) + ft_abs(move.b);
 	else
-		move.sum = ft_max(ft_abs(move.a), ft_abs(move.b));
+		move.cost = ft_max(ft_abs(move.a), ft_abs(move.b));
 	return (move);
 }
 
@@ -96,11 +96,11 @@ t_move	get_move(
 	int				flag;
 
 	flag = 0;
-	best_move.sum = INT_MAX;
+	best_move.cost = INT_MAX;
 	while (flag < 4)
 	{
 		move = _get_move_try(context, index_a, index_b, flag);
-		if (ft_abs(move.sum) < ft_abs(best_move.sum))
+		if (move.cost < best_move.cost)
 			best_move = move;
 		flag++;
 	}
