@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_action.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcourtoi <mcourtoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 22:43:42 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/09 23:10:45 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/13 02:21:30 by mcourtoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ struct s_builtin
 };
 
 static t_builtin const	g_action_tab[] = {
-{"sa", &action_sa},
-{"sb", &action_sb},
-{"ss", &action_ss},
-{"ra", &action_ra},
-{"rb", &action_rb},
-{"rr", &action_rr},
-{"rra", &action_rra},
-{"rrb", &action_rrb},
-{"rrr", &action_rrr},
-{"pa", &action_pa},
-{"pb", &action_pb},
+{"sa\n", &action_sa},
+{"sb\n", &action_sb},
+{"ss\n", &action_ss},
+{"ra\n", &action_ra},
+{"rb\n", &action_rb},
+{"rr\n", &action_rr},
+{"rra\n", &action_rra},
+{"rrb\n", &action_rrb},
+{"rrr\n", &action_rrr},
+{"pa\n", &action_pa},
+{"pb\n", &action_pb},
 {NULL, NULL}
 };
 
@@ -46,7 +46,7 @@ static inline int	_ft_strcmp(char const *str0, char const *str1)
 	return (*str0 - *str1);
 }
 
-void	do_action(t_context *const context, char const *const action)
+t_ret	do_action(t_context *const context, char const *const action)
 {
 	size_t	i;
 
@@ -56,8 +56,9 @@ void	do_action(t_context *const context, char const *const action)
 		if (_ft_strcmp(action, g_action_tab[i].name) == 0)
 		{
 			g_action_tab[i].func(context);
-			return ;
+			return (OK);
 		}
 		i++;
 	}
+	return (KO);
 }
