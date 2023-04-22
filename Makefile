@@ -102,6 +102,7 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf $(NAME_BONUS)
 
 re: fclean all
 

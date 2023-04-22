@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcourtoi <mcourtoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 00:26:44 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/13 02:23:40 by mcourtoi         ###   ########.fr       */
+/*   Updated: 2023/04/22 12:15:50 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ t_ret	solver(t_context *const context)
 		return (action_sa(context), OK);
 	if (context->pile_a->size == 3)
 		return (solve_3(context), OK);
+	if (context->pile_a->size <= 5)
+		return (solve_5(context), OK);
 	if (pile_copy_data(context->pile_t, context->pile_a) == KO)
 		return (KO);
 	_rotate_to_smallest(context->pile_t);

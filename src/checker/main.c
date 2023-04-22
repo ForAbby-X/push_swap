@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcourtoi <mcourtoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:54:08 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/13 02:18:43 by mcourtoi         ###   ########.fr       */
+/*   Updated: 2023/04/22 13:15:47 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int const argc, char const *const *const argv)
 	if (context == NULL)
 		return (printf("Error\n"), 1);
 	if (parse_input(context->pile_a, argv + 1) == KO)
-		return (context_destroy(context), printf("Error parse\n"), 1);
+		return (context_destroy(context), printf("Error\n"), 1);
 	if (execute_actions(context) == KO)
-		return (context_destroy(context), printf("Error exec\n"), 1);
+		return (context_destroy(context), printf("Error\n"), 1);
 	if (is_sorted(context->pile_a) == KO || context->pile_b->size != 0)
 		return (printf("KO\n"), 1);
 	context_destroy(context);

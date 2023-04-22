@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Configs
-BINARY='./push_swap.out'
-CHECKER='./checker.out'
+BINARY='./push_swap'
+CHECKER='./checker'
 MAKEFILE='./Makefile'
 BUILD_LOG='./build.log'
 

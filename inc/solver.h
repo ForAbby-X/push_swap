@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 18:09:24 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/12 11:31:04 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/22 12:11:03 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void		extract_and_sort_b(t_context *const context);
 
 /* Solves the push swap problem. */
 t_ret		solver(t_context *const context);
-
 void		solve_3(t_context *const context);
+void		solve_5(t_context *const context);
 
 struct s_minmax
 {

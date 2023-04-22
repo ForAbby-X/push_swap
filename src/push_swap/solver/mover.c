@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 19:26:33 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/12 11:30:42 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/22 13:36:13 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	action_to_smallest(t_context *const context)
 	}
 }
 
-static inline void	action_push_same(
+static inline void	_action_push_same(
 	t_context *const context,
 	t_move *const move)
 {
@@ -46,7 +46,7 @@ static inline void	action_push_same(
 
 void	action_push_move(t_context *const context, t_move *const move)
 {
-	action_push_same(context, move);
+	_action_push_same(context, move);
 	while (move->a)
 	{
 		if (move->a > 0)
