@@ -27,7 +27,6 @@ SRC		=	push_swap/context.c \
 			pile/add.c \
 			pile/remove.c \
 			pile/copy.c \
-			pile/display.c \
 			pile/conditions.c \
 			pile/rotation.c \
 			pile/geter.c \
