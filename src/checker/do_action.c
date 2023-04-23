@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 22:43:42 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/16 04:47:19 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/22 18:35:01 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ struct s_builtin
 	t_funcptr const		func;
 };
 
-static t_builtin const	g_action_tab[] = {
+static t_builtin const		g_action_tab[] = {
 {"sa\n", &action_sa},
 {"sb\n", &action_sb},
 {"ss\n", &action_ss},

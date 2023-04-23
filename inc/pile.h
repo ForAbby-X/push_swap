@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 20:16:00 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/04/01 20:52:03 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/22 18:32:57 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ t_ret	pile_rem_last(t_pile *const pile);
 void	pile_clear(t_pile *const pile);
 
 t_ret	pile_copy_data(t_pile *const dst, t_pile const *const src);
-
-void	pile_display(t_pile const *const pile, char const *const name);
 
 t_ret	pile_is_in(t_pile const *const pile, int val);
 

@@ -6,7 +6,7 @@
 /*   By: alde-fre <alde-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 18:51:16 by alde-fre          #+#    #+#             */
-/*   Updated: 2023/03/23 16:04:03 by alde-fre         ###   ########.fr       */
+/*   Updated: 2023/04/22 18:35:52 by alde-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_context	t_context;
 
 t_context	*context_create(size_t capacity);
 void		context_destroy(t_context *context);
-void		context_display(t_context *context);
+//void		context_display(t_context *context);
 
 struct s_context
 {
